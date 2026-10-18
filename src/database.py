@@ -40,7 +40,13 @@ def obtener_datos_financieros() -> pd.DataFrame:
 
     ic("Datos procesados correctamente con DuckDB:", df.head())
     
+    df = con.execute(query).df()
+    ic("Primeras filas reales que trae DuckDB:", df.head(2)) # Para ver qué fecha viene primero
+    
     # Cerramos la conexión a DuckDB
     con.close()
     
     return df
+
+if __name__ == '__main__':
+    print(obtener_datos_financieros())

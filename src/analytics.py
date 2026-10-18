@@ -14,11 +14,14 @@ def calcular_estadisticas(df: pd.DataFrame) -> dict:
     """
     ic("Iniciando cálculos estadísticos con scipy...")
 
+    # Creamos un subset limpio EXCLUSIVAMENTE para la regresión (eliminando el NaN de noviembre)
+    df_clean = df.dropna(subset=['ret_voo', 'ret_avuv'])
+
     # Definimos las variables:
     # x = Variable independiente (ej. Rendimiento de VOO)
     # y = Variable dependiente (ej. Rendimiento de AVUV)
-    x = df['ret_voo']
-    y = df['ret_avuv']
+    x = df_clean['ret_voo']
+    y = df_clean['ret_avuv']
 
     # linregress calcula automáticamente la regresión lineal y el coeficiente de Pearson
     # Retorna: pendiente (slope), intercepto (intercept), r_value (Pearson r), p_value y error estándar
