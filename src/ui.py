@@ -71,8 +71,8 @@ def render_tabla_datos(df):
             df.style.format({
                 "precio_voo": "${:.2f}",
                 "precio_avuv": "${:.2f}",
-                "ret_voo": "{:.2f}%",
-                "ret_avuv": "{:.2f}%"
+                "ret_voo": lambda x: f"{x:.2f}%" if pd.notna(x) else "N/A (Base)",
+                "ret_avuv": lambda x: f"{x:.2f}%" if pd.notna(x) else "N/A (Base)"
             }),
             width='stretch'
         )
