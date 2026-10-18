@@ -37,9 +37,6 @@ def obtener_datos_financieros() -> pd.DataFrame:
 
     # Ejecutamos la query y transformamos el resultado directamente a un DataFrame de Pandas
     df = con.execute(query).df()
-    
-    # Limpiamos el primer registro que tendrá valores nulos por el uso de LAG()
-    df = df.dropna().reset_index(drop=True)
 
     ic("Datos procesados correctamente con DuckDB:", df.head())
     
